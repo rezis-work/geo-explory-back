@@ -1,0 +1,19 @@
+{
+  "name": "geo-explory-backend",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@9.15.4",
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "dev:api": "pnpm --filter @geo-explory/api dev",
+    "dev:chat": "pnpm --filter @geo-explory/chat dev",
+    "dev:worker": "pnpm --filter @geo-explory/worker dev",
+    "lint": "turbo run lint",
+    "start": "turbo run start"
+  },
+  "devDependencies": {
+    "turbo": "^2.5.4",
+    "typescript": "^5.9.3"
+  }
+}

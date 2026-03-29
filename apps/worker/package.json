@@ -1,0 +1,26 @@
+{
+  "name": "@geo-explory/worker",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx watch src/index.ts",
+    "start": "node dist/index.js",
+    "lint": "echo \"no lint configured\""
+  },
+  "dependencies": {
+    "@geo-explory/backend-shared": "workspace:*",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "winston": "^3.17.0",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.13.10",
+    "tsx": "^4.19.3",
+    "typescript": "^5.9.3"
+  }
+}
