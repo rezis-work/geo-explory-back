@@ -29,11 +29,13 @@ jobs:
 
       - uses: anthropics/claude-code-action@v1
         continue-on-error: true
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
           model: claude-haiku-4-5-20251001
-          allowed_tools: "Bash(gh pr comment:*),Bash(gh pr diff:*),Bash(gh pr view:*),Bash(gh pr review:*)"
+          allowed_tools: "Bash(gh:*)"
           prompt: |
             Review the pull request ${{ github.event.pull_request.number }} in ${{ github.repository }}.
 
