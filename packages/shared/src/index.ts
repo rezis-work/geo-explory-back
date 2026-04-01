@@ -1,3 +1,5 @@
+export * from "./db/schema.js";
+
 import { config } from "dotenv";
 import path from "node:path";
 import { fileURLToPath } from "node:url";

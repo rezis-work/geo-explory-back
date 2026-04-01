@@ -1,6 +1,8 @@
+import cookieParser from "cookie-parser";
 import cors from "cors";
-import express from "express";
+import express, { type NextFunction, type Request, type Response } from "express";
 import os from "os";
+import { authRouter } from "./auth/routes.js";
 import { env } from "./env.js";
 import { logger } from "./logger.js";
 
@@ -9,6 +11,7 @@ const startedAt = new Date().toISOString();
 
 app.use(cors());
 app.use(express.json());
+app.use(cookieParser());
 
 app.use((req, res, next) => {
   const start = Date.now();
@@ -65,6 +68,14 @@ app.get("/health", (_req, res) => {
       logLevel: env.LOG_LEVEL,
     },
   });
+});
+
+app.use("/auth", authRouter);
+
+// Global error handler
+app.use((err: Error, _req: Request, res: Response, _next: NextFunction) => {
+  logger.error("unhandled error", { error: err.message, stack: err.stack });
+  res.status(500).json({ error: "Internal server error" });
 });
 
 app.listen(env.PORT, () => {
