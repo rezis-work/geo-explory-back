@@ -31,13 +31,13 @@ jobs:
         continue-on-error: true
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           model: claude-haiku-4-5-20251001
-          track_progress: true
+          allowed_tools: "Bash(gh pr comment:*),Bash(gh pr diff:*),Bash(gh pr view:*),Bash(gh pr review:*)"
           prompt: |
-            REPO: ${{ github.repository }}
-            PR NUMBER: ${{ github.event.pull_request.number }}
+            Review the pull request ${{ github.event.pull_request.number }} in ${{ github.repository }}.
 
-            This repository is the **backend** service (pnpm + Turborepo, TypeScript, Express apps under `apps/`, shared code under `packages/`).
+            This is the **backend** service (pnpm + Turborepo, TypeScript, Express apps under `apps/`, shared code under `packages/`).
 
             Focus on:
             - Correctness, error handling, and API design
@@ -45,12 +45,4 @@ jobs:
             - TypeScript types and Zod/env usage
             - Monorepo boundaries and shared package usage
 
-            The PR branch is already checked out.
-
-            Use `gh pr comment` for a short summary (prefix with **[Claude · backend]**).
-            Use `mcp__github_inline_comment__create_inline_comment` (with `confirmed: true`) for concrete issues.
-
-            Only post GitHub comments—do not paste the full review as a workflow log only.
-
-          claude_args: |
-            --allowedTools "mcp__github_inline_comment__create_inline_comment,Bash(gh pr comment:*),Bash(gh pr diff:*),Bash(gh pr view:*)"
+            Post a review summary as a PR comment using `gh pr comment` prefixed with **[Claude · backend]**.
