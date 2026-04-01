@@ -28,8 +28,10 @@ jobs:
           fetch-depth: 1
 
       - uses: anthropics/claude-code-action@v1
+        continue-on-error: true
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          model: claude-haiku-4-5-20251001
           track_progress: true
           prompt: |
             REPO: ${{ github.repository }}
