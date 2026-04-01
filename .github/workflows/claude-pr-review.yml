@@ -34,8 +34,8 @@ jobs:
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          model: claude-haiku-4-5-20251001
           allowed_tools: "Bash(gh:*)"
+          claude_args: "--model claude-haiku-4-5-20251001"
           prompt: |
             Review the pull request ${{ github.event.pull_request.number }} in ${{ github.repository }}.
 
